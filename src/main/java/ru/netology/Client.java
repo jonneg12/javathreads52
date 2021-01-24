@@ -45,12 +45,9 @@ public class Client implements Runnable {
                 }
                 socketChannel.write(ByteBuffer.wrap(msg.getBytes(StandardCharsets.UTF_8)));
                 Thread.sleep(1000);
-                System.out.println("Message: " + msg);
-
                 int bytesCount = socketChannel.read(inputBuffer);
                 System.out.println("SERVER: " + new String(inputBuffer.array(), 0, bytesCount, StandardCharsets.UTF_8));
                 inputBuffer.clear();
-
             }
 
         } catch (InterruptedException | IOException e) {

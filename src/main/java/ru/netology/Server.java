@@ -19,7 +19,6 @@ public class Server implements Runnable {
     @Override
     public void run() {
 
-
         ServerSocketChannel serverSocketChannel = null;
 
         try {
@@ -40,7 +39,7 @@ public class Server implements Runnable {
                     int bytesCount = socketChannel.read(inputBuffer);
 
                     if (bytesCount == -1) {
-                        System.out.println("Cannot read from stream.");
+                        System.out.println("Server stopped.");
                         break;
                     }
 
@@ -49,6 +48,7 @@ public class Server implements Runnable {
                     System.out.println("Got message: " + msg);
                     socketChannel.write(ByteBuffer.wrap(msg.replaceAll(" ", "").getBytes(StandardCharsets.UTF_8)));
                 }
+                break;
             } catch (IOException e) {
                 e.printStackTrace();
             }
